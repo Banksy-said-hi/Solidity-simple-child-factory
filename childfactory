@@ -1,0 +1,22 @@
+pragma solidity 0.8.0;
+
+
+contract child {
+    string name;
+    string lastname;
+    constructor(string memory _name,string memory _lastname) {
+        _name = name;
+        _lastname = lastname;
+    }
+}
+
+contract parent {
+    address[] public child_addresses;
+    event child_spawn(string _firstname, string _lastname, address  );
+    function breed(string memory _firstname, string memory _lastname) public {
+        child _child = new child(_firstname, _lastname);
+        emit child_spawn(_firstname, _lastname, address(_child));
+        child_addresses.push(address(_child));
+        
+    }
+}
